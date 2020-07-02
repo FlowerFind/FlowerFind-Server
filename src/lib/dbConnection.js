@@ -18,6 +18,7 @@ module.exports = {
             })
         })
     },
+
     Transaction: async (...args) => {
         console.log('Transaction start')
         const connection = await pool.getConnection()
@@ -37,6 +38,7 @@ module.exports = {
 
         console.log('Transaction : commit')
         await connection.commit()
+
 
         console.log('Transaction : releaseCOnnection')
         pool.releaseConnection(connection)

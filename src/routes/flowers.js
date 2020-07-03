@@ -17,8 +17,7 @@ router.post('/flowerinfo', upload.single('image'), async (req, res) => {
 
     const idxresult = await pool.queryParam_None(`SELECT flowerIdx FROM flower WHERE name = "${flowername.name}"`) //idx
     const imgresult = await pool.queryParam_None(`INSERT INTO ${imgtable}(${fields}) VALUES ('${urlresult}','${idxresult[0].flowerIdx}')`)
-
-    const imglist  = await pool.queryParam_None(`SELECT url FROM image WHERE flowerIdx = "${idxresult[0].flowerIdx}"`)
+    const imglist = await pool.queryParam_None(`SELECT url FROM image WHERE flowerIdx = "${idxresult[0].flowerIdx}"`)
 
     async function flowerinfo(name) {
 
@@ -32,9 +31,9 @@ router.post('/flowerinfo', upload.single('image'), async (req, res) => {
                 return {
                     code: statusCode.OK,
                     json: {
-                        message : responseMessage.FLOWER_INFO_SUCCESS,
-                        imgUrl : urlresult,
-                        flowerInfo : result,
+                        message: responseMessage.FLOWER_INFO_SUCCESS,
+                        imgUrl: urlresult,
+                        flowerInfo: result,
                         imgList: imglist
                     }
                 }
@@ -46,6 +45,7 @@ router.post('/flowerinfo', upload.single('image'), async (req, res) => {
             }
         }
     }
+
     //multipart/form-data
 //꽃 이름에 맞는 꽃정보 출력
     flowerinfo(req.body)

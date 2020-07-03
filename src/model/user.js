@@ -7,6 +7,7 @@ const user = {
     signin: async (id, pw) => {
         const table = 'user'
         const result = await pool.queryParam_None(`SELECT *FROM ${table}`)
+        const idxresult = await pool.queryParam_None(`SELECT userIdx FROM ${table} WHERE id = "${id}"`)
         if (!result) {
             return {status: 500, message: 'error'}
         }
@@ -18,15 +19,18 @@ const user = {
                 code: statusCode.BAD_REQUEST,
                 json: authUtil.successFalse(responseMessage.NO_USER)
             }
-        }else if(user.pw != pw){
+        } else if (user.pw != pw) {
             return {
                 code: statusCode.UNAUTHORIZED,
                 json: authUtil.successFalse(responseMessage.MISS_MATCH_PW)
             }
-        }else{
+        } else {
             return {
                 code: 200,
-                json: authUtil.successTrue(responseMessage.SIGN_IN_SUCCESS)
+                json: {
+                    message: authUtil.successTrue(responseMessage.SIGN_IN_SUCCESS),
+                    useridx: idxresult
+                }
             }
         }
     },
@@ -34,7 +38,7 @@ const user = {
 
         const table = 'user'
         const fields = 'id, pw, name'
-        const result = await pool.queryParam_None(`INSERT INTO ${table}(${fields}) VALUES('${id}','${pw}','${name}')`)
+        const result = await pool.queryParam_None(`INSERT INTO ${table}(${fields}) VALUES ('${id}','${pw}','${name}')`)
 
         if (!result) {
             return {status: 500, message: 'error'}
@@ -43,7 +47,9 @@ const user = {
         return {
             code: 200,
             json: authUtil.successTrue(responseMessage.SIGN_UP_SUCCESS)
+
         }
+
     },
 
     checkid: async (id) => {

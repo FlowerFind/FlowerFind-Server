@@ -4,9 +4,15 @@ const router = express.Router()
 const responseMessage = require('../module/responseMessage');
 const authUtil = require('../module/authUtil')
 const User = require('../model/user')
+const pool = require('../module/pool')
+router.get('/', function (req, res, next) {
+    if(req.cookies){
+        console.log(req.cookies)
+    }
+    res.send("환영")
+})
 
-
-router.post('/signup', (req, res) => {
+router.post('/signup', async (req, res) => {
     const {
         id,
         pw,
@@ -19,6 +25,7 @@ router.post('/signup', (req, res) => {
             .send(authUtil.successFalse(responseMessage.NULL_VALUE));
         return
     }
+
     User.signup(id, pw, name)
         .then(({code, json}) => res.status(code).send(json))
         .catch(err => {

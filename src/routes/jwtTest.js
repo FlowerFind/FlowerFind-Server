@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-
 const responseMessage = require('../module/responseMessage')
 const statusCode = require('../module/statusCode')
 const authUtil = require('../module/authUtil')

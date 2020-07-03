@@ -18,6 +18,11 @@ module.exports = {
     FLOWER_INFO_SUCCESS : "정보 가져오기 성공",
     FLOWER_INFO_FAIL :"정보 가져오기 실패",
 
+
+    BOARD_UPLOAD_SUCCESS : "게시글 업로드 성공",
+    BOARD_UPLOAD_FAIL : "게시글 업로드 실패",
+
+    DB_FAIL : "데이터베이스 접근 실패",
     INVALID_TOKEN: "잘못된 형식의 토큰입니다.",
     EMPTY_TOKEN: "토큰값이 존재하지 않습니다.",
     EXPIRED_TOKEN: "만료된 토큰입니다.",

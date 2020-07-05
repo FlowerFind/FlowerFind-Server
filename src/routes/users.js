@@ -4,13 +4,6 @@ const router = express.Router()
 const responseMessage = require('../module/responseMessage');
 const authUtil = require('../module/authUtil')
 const User = require('../model/user')
-const pool = require('../module/pool')
-router.get('/', function (req, res, next) {
-    if(req.cookies){
-        console.log(req.cookies)
-    }
-    res.send("환영")
-})
 
 router.post('/signup', async (req, res) => {
     const {

@@ -18,6 +18,8 @@ module.exports = {
     FLOWER_INFO_SUCCESS : "정보 가져오기 성공",
     FLOWER_INFO_FAIL :"정보 가져오기 실패",
 
+    COMMENT_SUCCESS: "댓글 달기 성공",
+    COMMENT_FAIL: "댓글 달기 실패",
 
     BOARD_UPLOAD_SUCCESS : "게시글 업로드 성공",
     BOARD_UPLOAD_FAIL : "게시글 업로드 실패",

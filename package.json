@@ -6,7 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "aws-sdk": "^2.697.0",
+    "aws-sdk": "^2.814.0",
     "bc-react-session": "^1.5.16",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
